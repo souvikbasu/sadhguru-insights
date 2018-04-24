@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="content-box">
+    <div class="alert alert-success" role="alert" [hidden]="isShowSuccess">
+      <strong>success!</strong> Saved Successfully !!!
+    </div>
+    <div class="alert alert-danger" role="alert" [hidden]="isShowError">
+      <strong>Sorry!</strong> Error Occurred Please try again later !!!
+    </div>
+    <form [formGroup]="videoForm">
+      <div class="form-control">
+        <mat-form-field class="example-full-width">
+          <input matInput formControlName="txtUrl" placeholder="Youtube Url" value="" (blur)="showPreview(txtUrl.value)">
+        </mat-form-field>
+      </div>
+      <div class="form-control">
+        <mat-card class="video-card">
+          <iframe id="videoPreview" [attr.src]="videoPreview" width="560" height="315" frameborder="0" allowfullscreen></iframe>
+        </mat-card>
+      </div>
+      <div class="form-control">
+        <mat-form-field class="example-full-width">
+          <input matInput formControlName="txtKeyWords" placeholder="Keywords" value="">
+        </mat-form-field>
+      </div>
+      <div class="form-control">
+        <mat-form-field class="example-full-width">
+          <input matInput formControlName="txtTime" placeholder="Time" value="">
+        </mat-form-field>
+      </div>
+      <div class="form-control">
+        <button mat-raised-button color="primary" type="button" (click)="submit(videoForm.value)">Save</button>
+        <button mat-raised-button color="primary" type="button" (click)="clearDetails()">Reset</button>
+      </div>
+    </form>
+  </div>
+</div>

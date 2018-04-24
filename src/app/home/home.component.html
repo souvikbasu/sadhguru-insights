@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="col100 form-control">
+    <button mat-raised-button color="primary">Happiness</button>
+    <button mat-raised-button color="primary">Life</button>
+    <button mat-raised-button color="primary">Food</button>
+    <button mat-raised-button color="primary">Education</button>
+    <button mat-raised-button color="primary">Work Life Balance</button>
+  </div>
+  <div class="col50" *ngFor="let data of dataArr;">
+    <mat-card class="video-card">
+      <iframe [attr.src]="showPreview(data.url)" width="560" height="315" frameborder="0" allowfullscreen></iframe>
+      <mat-card-header>
+        <div class="titleHeader">{{data.time}}</div>
+      </mat-card-header>
+    </mat-card>
+  </div>
+</div>
