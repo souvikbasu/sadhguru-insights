@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { VideoInfoService } from '../video-info.service';
+import { VideoInfoService } from '../../services/video-info.service';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({

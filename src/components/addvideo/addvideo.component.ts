@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators} from "@angular/forms";
 import { DomSanitizer, SafeResourceUrl, } from '@angular/platform-browser';
-import { VideoInfoService } from '../video-info.service';
+import { VideoInfoService } from '../../services/video-info.service';
 
 @Component({
   selector: 'app-addvideo',
