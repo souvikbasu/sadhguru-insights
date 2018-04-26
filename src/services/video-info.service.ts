@@ -9,7 +9,6 @@ export class VideoInfoService {
   constructor(private http: Http) { }
 
   saveVideo(value) {
-    debugger;
     this.headers = new Headers({ 'Content-Type': 'application/json' });
     return this.http.post('http://localhost:3000/video', value, { headers: this.headers })
       .map(res => res.json()

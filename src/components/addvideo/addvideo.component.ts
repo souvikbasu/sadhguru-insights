@@ -40,7 +40,6 @@ export class AddvideoComponent implements OnInit {
   }
 
   submit(values){
-    debugger;
     var arr = [];
     let arrVal = values.txtKeyWords;
     arr.push(arrVal);
