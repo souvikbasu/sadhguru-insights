@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'http://sadhguruinsights.com'
+  apiUrl: 'https://sadhguruinsights-api.herokuapp.com'
 };
