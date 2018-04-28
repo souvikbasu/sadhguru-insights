@@ -17,17 +17,18 @@ export class VideoInfoService {
     );
   }
   
-  getVideos() {
+  getTags() {
     this.headers = new Headers({ 'Content-Type': 'application/json' });
-    return this.http.get(this.apiUrl+'/video', { headers: this.headers })
+    return this.http.get(this.apiUrl+'/tags', { headers: this.headers })
       .map(res => res.json()
       );
   }
 
   getVideo(value) {
     this.headers = new Headers({ 'Content-Type': 'application/json' });
-    return this.http.post(this.apiUrl+'/videosbytag', value, { headers: this.headers })
+    return this.http.get(this.apiUrl + '/videos?tag='+value, { headers: this.headers })
       .map(res => res.json()
       );
+      
   }
 }
