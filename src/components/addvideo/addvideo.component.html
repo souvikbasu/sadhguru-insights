@@ -4,7 +4,7 @@
       <strong>success!</strong> Saved Successfully !!!
     </div>
     <div class="alert alert-danger" role="alert" [hidden]="isShowError">
-      <strong>Sorry!</strong> Error Occurred Please try again later !!!
+      <strong>error!</strong> Please enter valid url !!!
     </div>
     <form [formGroup]="videoForm">
       <div class="form-control">
@@ -28,7 +28,7 @@
         </mat-form-field>
       </div>
       <div class="form-control">
-        <button mat-raised-button color="primary" type="button" (click)="submit(videoForm.value)">Save</button>
+        <button mat-raised-button color="primary" [disabled]="!videoForm.valid" type="button" (click)="submit(videoForm.value)">Save</button>
         <button mat-raised-button color="primary" type="button" (click)="clearDetails()">Reset</button>
       </div>
     </form>

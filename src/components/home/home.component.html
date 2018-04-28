@@ -1,10 +1,8 @@
 <div class="container">
   <div class="col100 form-control">
-    <button mat-raised-button color="primary">Happiness</button>
-    <button mat-raised-button color="primary">Life</button>
-    <button mat-raised-button color="primary">Food</button>
-    <button mat-raised-button color="primary">Education</button>
-    <button mat-raised-button color="primary">Work Life Balance</button>
+    <button mat-raised-button color="primary" *ngFor="let data of buttonArr;" (click)="getVideo(data)">
+      <span>{{data | uppercase}}</span>
+    </button>
   </div>
   <div class="col50" *ngFor="let data of dataArr;">
     <mat-card class="video-card">

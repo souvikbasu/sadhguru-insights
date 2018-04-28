@@ -11,6 +11,7 @@ export class HomeComponent implements OnInit {
 
   constructor(private videoInfoService: VideoInfoService, public sanitizer: DomSanitizer) { }
   dataArr = [];
+  buttonArr = [];
 
   ngOnInit() {
     this.bindVideos();
@@ -22,6 +23,25 @@ export class HomeComponent implements OnInit {
 
   bindVideos(){
     this.videoInfoService.getVideos().subscribe( res =>{
+      let dataArr = res.map(function(data) {
+        return data['tags'];
+      })
+      var mergedArr = [].concat.apply([], dataArr);      
+      let uniqueArray = mergedArr.filter(function (item, pos) {
+        return mergedArr.indexOf(item) == pos;
+      })
+      this.buttonArr = uniqueArray;
+      this.getVideo(uniqueArray[0]);
+    })
+  }
+
+  getVideo(value){
+    debugger;
+    let data = {
+      tag : value
+    }
+    this.videoInfoService.getVideo(data).subscribe( res => {
+      console.log(res);
       this.dataArr = res;
     })
   }
