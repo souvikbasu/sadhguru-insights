@@ -22,7 +22,7 @@ export class HomeComponent implements OnInit {
   }
 
   bindVideos(){
-    this.videoInfoService.getVideos().subscribe( res =>{
+    this.videoInfoService.getTags().subscribe( res =>{
       let dataArr = res.map(function(data) {
         return data['tags'];
       })
@@ -37,10 +37,7 @@ export class HomeComponent implements OnInit {
 
   getVideo(value){
     debugger;
-    let data = {
-      tag : value
-    }
-    this.videoInfoService.getVideo(data).subscribe( res => {
+    this.videoInfoService.getVideo(value).subscribe( res => {
       console.log(res);
       this.dataArr = res;
     })
