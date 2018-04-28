@@ -40,10 +40,23 @@ export class AddvideoComponent implements OnInit {
   }
 
   submit(values){
-    var arr = [];
+    debugger;
+    //var arr = [];
+    if (values.txtUrl == ""){
+      this.showErrorMessage();
+      return false;
+    }
     let arrVal = values.txtKeyWords;
-    arr.push(arrVal);
-    values.tags = arr;
+    let arr = arrVal.split(',');
+
+    let formattedArr = arr.map(function(data){
+      let value = data.trim();
+      value = value.toLocaleLowerCase();
+      return value;
+    })
+    //return false;
+    //arr.push(arrVal);
+    values.tags = formattedArr;
     values.time = values.txtTime;
     values.url = values.txtUrl;
 
@@ -61,6 +74,14 @@ export class AddvideoComponent implements OnInit {
     this.isShowSuccess = false;
     setTimeout(() => {
       this.isShowSuccess = true;
+    }, 5000);
+  }
+
+  showErrorMessage() {
+    window.scrollTo(500, 0);
+    this.isShowError = false;
+    setTimeout(() => {
+      this.isShowError = true;
     }, 5000);
   }
 
