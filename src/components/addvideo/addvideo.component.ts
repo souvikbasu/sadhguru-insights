@@ -36,7 +36,9 @@ export class AddvideoComponent implements OnInit {
   }
 
   showPreview(url){
-    this.videoPreview = this.sanitizer.bypassSecurityTrustResourceUrl(url);    
+    let splittedUrl = url.split('watch?v=');
+    let newUrl = splittedUrl.join('embed/');
+    this.videoPreview = this.sanitizer.bypassSecurityTrustResourceUrl(newUrl);    
   }
 
   submit(values){

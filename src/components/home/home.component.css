@@ -36,3 +36,6 @@ button.mat-raised-button.mat-primary{
   width: 100%;
   text-align: center;
 }
+.myHomeBtn.active{
+  background: #af87f7 !important;
+}

@@ -31,15 +31,26 @@ export class HomeComponent implements OnInit {
         return mergedArr.indexOf(item) == pos;
       })
       this.buttonArr = uniqueArray;
-      this.getVideo(uniqueArray[0]);
+      setTimeout(() => {
+        this.getVideo(uniqueArray[0], 0);
+      }, 1000);
+      
     })
   }
 
-  getVideo(value){
-    debugger;
+  getVideo(value,index){
+    this.addCssButtons(document.getElementsByClassName('myHomeBtn'));
+    var btn = document.getElementsByClassName('myHomeBtn')[index];
+    btn['style']['background'] = '#af87f7';
     this.videoInfoService.getVideo(value).subscribe( res => {
-      console.log(res);
       this.dataArr = res;
     })
+  }
+
+  addCssButtons(allBtn){
+    for(var i = 0; i < allBtn.length; i++){
+      var btn = allBtn[i];
+      btn['style']['background'] = '#673ab7';
+    }
   }
 }
