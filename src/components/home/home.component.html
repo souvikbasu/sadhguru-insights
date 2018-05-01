@@ -1,15 +1,18 @@
 <div class="container">
-  <div class="col100 form-control">
+  <div class="col-12 col-sm-12 col-xl-12 form-control">
     <button mat-raised-button class="myHomeBtn" color="primary" *ngFor="let data of buttonArr;let i = index;" (click)="getVideo(data,i)">
       <span>{{data | uppercase}}</span>
     </button>
   </div>
-  <div class="col50" *ngFor="let data of dataArr;">
-    <mat-card class="video-card">
-      <iframe [attr.src]="showPreview(data.url)" width="560" height="315" frameborder="0" allowfullscreen></iframe>
-      <mat-card-header>
-        <div class="titleHeader">{{data.time}}</div>
-      </mat-card-header>
-    </mat-card>
+  <div class="row">
+    <div class="col-12 col-sm-12 col-xl-6" *ngFor="let data of dataArr;">
+      <mat-card class="video-card">
+        <iframe [attr.src]="showPreview(data.url)" width="560" height="315" frameborder="0" allowfullscreen></iframe>
+        <mat-card-header>
+          <div class="titleHeader">{{data.time}}</div>
+        </mat-card-header>
+      </mat-card>
+    </div>
   </div>
+  
 </div>
