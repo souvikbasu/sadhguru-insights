@@ -21,6 +21,7 @@ iframe{
 }
 .form-control{
   margin: 5px 20px 20px 20px;
+  border: 0px;
 }
 button.mat-raised-button.mat-primary {
     margin: 0px 5px;
