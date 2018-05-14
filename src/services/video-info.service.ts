@@ -29,6 +29,5 @@ export class VideoInfoService {
     return this.http.get(this.apiUrl + '/videos?tag=' + value, { headers: this.headers })
       .map(res => res.json()
       );
-
   }
 }
