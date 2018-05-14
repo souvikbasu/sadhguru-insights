@@ -23,12 +23,12 @@ export class HomeComponent implements OnInit {
 
   bindVideos() {
     this.videoInfoService.getTags().subscribe( res => {
-      let dataArr = res.map(function(data) {
+      const dataArr = res.map(function(data) {
         return data['tags'];
       });
-      let mergedArr = [].concat.apply([], dataArr);
+      const mergedArr = [].concat.apply([], dataArr);
       const uniqueArray = mergedArr.filter(function (item, pos) {
-        return mergedArr.indexOf(item) == pos;
+        return mergedArr.indexOf(item) === pos;
       });
       this.buttonArr = uniqueArray;
       setTimeout(() => {
