@@ -4,8 +4,7 @@ import { HomeComponent } from '../components/home/home.component';
 import { AddvideoComponent } from '../components/addvideo/addvideo.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent },
+  { path: '', component: HomeComponent },
   { path: 'admin', component: AddvideoComponent }];
 
 @NgModule({
