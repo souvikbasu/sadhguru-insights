@@ -38,7 +38,7 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  getVideo(value, index) {
+  getVideo(value, index)  {
     this.addCssButtons(document.getElementsByClassName('myHomeBtn'));
     const btn = document.getElementsByClassName('myHomeBtn')[index];
     btn['style']['background'] = '#af87f7';
