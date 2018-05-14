@@ -4,9 +4,9 @@ echo 'Running git pre-commit tests'
 
 # Run TSLint against any staged (added, copied or modified) files with names
 # ending in ".ts". If there are any TSLint errors the commit will be aborted.
-JS_FILES="$(git diff --cached --name-only --diff-filter=ACM | grep '.ts$')"
+TS_FILES="$(git diff --cached --name-only --diff-filter=ACM | grep '.ts$')"
 if [ ! -z "$TS_FILES" ]; then
-  echo $JS_FILES | xargs npm run lint || { exit 1; }
+  echo $TS_FILES | xargs npm run lint || { exit 1; }
 else
-  echo 'No staged JavaScript files... skipping TSLint'
+  echo 'No staged TypeScript files... skipping TSLint'
 fi
