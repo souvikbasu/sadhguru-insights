@@ -1,7 +1,7 @@
 <div class="container70">
   <div class="content-box">
     <div class="alert alert-success" role="alert" [hidden]="isShowSuccess">
-      <strong>success!</strong> Saved Successfully !!!
+      <strong>success!</strong> {{isMsgText}} Successfully !!!
     </div>
     <div class="alert alert-danger" role="alert" [hidden]="isShowError">
       <strong>error!</strong> Please enter valid url !!!
@@ -28,7 +28,8 @@
         </mat-form-field>
       </div>
       <div class="form-control">
-        <button mat-raised-button color="primary" [disabled]="!videoForm.valid" type="button" (click)="submit(videoForm.value)">Save</button>
+        <button mat-raised-button [hidden]="isShow" color="primary" [disabled]="!videoForm.valid" type="button" (click)="submit(videoForm.value)">Save</button>
+        <button mat-raised-button [hidden]="isUpdate" color="primary" type="button" (click)="update(videoForm.value, videoId)">Update</button>
         <button mat-raised-button color="primary" type="button" (click)="clearDetails()">Reset</button>
       </div>
     </form>

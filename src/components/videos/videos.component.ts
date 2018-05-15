@@ -7,8 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VideosComponent implements OnInit {
   constructor() { }
+  tabValue : string;
 
   ngOnInit() {
   }
   
+  showContent(value){
+    this.tabValue = value.index;
+    if(value.index == 0){
+      let tab = document.getElementsByClassName('mat-tab-label')[value.index + 1];
+      var tabText = tab.getElementsByClassName('mat-tab-label-content')[0];
+      tabText.innerText = 'Add Videos';
+    }
+  }
 }

@@ -1,0 +1,10 @@
+.alert{
+    padding: 15px;
+    background-color: #4CAF50;
+    color: white;
+    position: absolute;
+    right: 1px;
+    top: -6px;
+    font-family: sans-serif;
+    font-size: 15px;
+}

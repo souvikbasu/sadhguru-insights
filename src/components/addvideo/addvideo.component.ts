@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { FormBuilder, Validators} from "@angular/forms";
 import { DomSanitizer, SafeResourceUrl, } from '@angular/platform-browser';
 import { VideoInfoService } from '../../services/video-info.service';
@@ -8,18 +8,49 @@ import { VideoInfoService } from '../../services/video-info.service';
   templateUrl: './addvideo.component.html',
   styleUrls: ['./addvideo.component.css']
 })
-export class AddvideoComponent implements OnInit {
+export class AddvideoComponent implements OnInit, OnChanges {
 
   constructor(private fb: FormBuilder, public sanitizer: DomSanitizer,private videoInfo : VideoInfoService) { }
   videoForm;
   isShowSuccess: boolean = true;
   isShowError: boolean = true;
   videoPreview: SafeResourceUrl;
+  videoId : string;
+  isUpdate = true;
+  isShow = false;
+  tabValue : string;
+  isMsgText : string;
+  @Input() tabVal = '';
   ngOnInit() {
     this.videoForm = this.fb.group({
       'txtUrl': ['', Validators],
       'txtKeyWords': ['', Validators],
       'txtTime' : ['',Validators]
+    })
+    this.bindUpdateData();
+  }
+
+  ngOnChanges() {
+    if (this.tabVal == 1) {
+      this.tabValue = this.tabVal['txtval'];
+      this.clearDetails();   
+      this.isUpdate = true;
+      this.isShow = false;
+    }
+  }
+
+  bindUpdateData(){
+    this.videoInfo.dataId.subscribe(res => {
+      this.videoInfo.getVideoById(res).subscribe( res =>{
+        console.log(res);
+        this.videoForm.controls['txtUrl'].setValue(res[0]['url']);
+        this.videoPreview = this.sanitizer.bypassSecurityTrustResourceUrl(res[0]['url']);
+        this.videoForm.controls['txtKeyWords'].setValue(res[0]['tags']);
+        this.videoForm.controls['txtTime'].setValue(res[0]['time']);
+        this.videoId = res[0]['_id'];
+        this.isUpdate = false;
+        this.isShow = true;
+      });
     })
   }
 
@@ -42,8 +73,6 @@ export class AddvideoComponent implements OnInit {
   }
 
   submit(values){
-    debugger;
-    //var arr = [];
     if (values.txtUrl == ""){
       this.showErrorMessage();
       return false;
@@ -56,8 +85,7 @@ export class AddvideoComponent implements OnInit {
       value = value.toLocaleLowerCase();
       return value;
     })
-    //return false;
-    //arr.push(arrVal);
+
     let splittedUrl = values.txtUrl.split('watch?v=');
     let newUrl = splittedUrl.join('embed/');
     values.tags = formattedArr;
@@ -67,15 +95,51 @@ export class AddvideoComponent implements OnInit {
     this.videoInfo.saveVideo(values).subscribe( res => {
       console.log(res)
       if(res['message'] == 'saved'){
-        this.showSuccessMessage();
+        this.showSuccessMessage('Saved');
         this.clearDetails();
+        let tab = document.getElementsByClassName('mat-tab-label')[0];
+        tab.click();
+        var tabText = tab.getElementsByClassName('mat-tab-label-content')[0];
       }
     })
   }
 
-  showSuccessMessage(){
+  update(values, dataId){
+    let tagArr = [];
+    let arrVal = values.txtKeyWords;
+    if (Array.isArray(arrVal) == true){
+      tagArr = arrVal;
+    }
+    else{
+      let arr = arrVal.split(',');
+      let formattedArr = arr.map(function (data) {
+        let value = data.trim();
+        value = value.toLocaleLowerCase();
+        return value;
+      })
+      tagArr = formattedArr;
+    }        
+
+    values.tags = tagArr;
+    values.time = values.txtTime;
+    values.url = values.txtUrl;
+    values._id = dataId;
+
+    this.videoInfo.updateVideo(values).subscribe( res => {
+      if (res['message'] == 'updated') {
+        this.showSuccessMessage('Update');
+        this.clearDetails();
+        let tab = document.getElementsByClassName('mat-tab-label')[0];
+        tab.click();
+        var tabText = tab.getElementsByClassName('mat-tab-label-content')[0];
+      }
+    })
+  }
+
+  showSuccessMessage(value){
     window.scrollTo(500, 0);
     this.isShowSuccess = false;
+    this.isMsgText = value;
     setTimeout(() => {
       this.isShowSuccess = true;
     }, 5000);
