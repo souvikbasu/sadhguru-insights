@@ -23,18 +23,10 @@ export class HomeComponent implements OnInit {
 
   bindVideos() {
     this.videoInfoService.getTags().subscribe( res => {
-      const dataArr = res.map(function(data) {
-        return data['tags'];
-      });
-      const mergedArr = [].concat.apply([], dataArr);
-      const uniqueArray = mergedArr.filter(function (item, pos) {
-        return mergedArr.indexOf(item) === pos;
-      });
-      this.buttonArr = uniqueArray;
+      this.buttonArr = res;
       setTimeout(() => {
-        this.getVideo(uniqueArray[0], 0);
+        this.getVideo(res[0], 0);
       }, 1000);
-
     });
   }
 
