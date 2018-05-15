@@ -1,0 +1,13 @@
+.container80{
+  width: 80%;
+  margin: 0 auto;
+  padding: 30px 0px;
+}
+.container60{
+    width: 60%;
+  margin: 0 auto;
+  padding: 30px 0px;
+}
+/deep/.mat-tab-label{
+    width: 50% !important;
+}
