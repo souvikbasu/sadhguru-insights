@@ -1,26 +1,37 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges, Input } from '@angular/core';
 import { VideoInfoService } from '../../services/video-info.service';
 import { DomSanitizer } from '@angular/platform-browser';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-view-video',
   templateUrl: './view-video.component.html',
   styleUrls: ['./view-video.component.css']
 })
-export class ViewVideoComponent implements OnInit {
+export class ViewVideoComponent implements OnInit, OnChanges {
 
-  constructor(private videoInfoService: VideoInfoService, public sanitizer: DomSanitizer) { }
+  constructor(private videoInfoService: VideoInfoService, public sanitizer: DomSanitizer,
+    private route: ActivatedRoute, private router: Router) { }
   dataArr : any;
+  isShowSuccess: boolean = true;
+  isShowError: boolean = true;
+  isMsgText: string;
+  @Input() tabVal = '';
   ngOnInit() {
     debugger;
     this.bindVideos();
   }
 
+  ngOnChanges() {
+    debugger;
+    if (this.tabVal == 0) {
+      this.bindVideos();
+    }
+  }
+
   bindVideos() {
     this.videoInfoService.getVideo('').subscribe(res => {
-      debugger;
       this.dataArr = res;
-      console.log(this.dataArr);
     });
   }
 
@@ -29,7 +40,6 @@ export class ViewVideoComponent implements OnInit {
   }
 
   ifAvailable(value){
-    debugger;
     if(value == null || value == ""){
       return 'N/A';
     }
@@ -39,10 +49,46 @@ export class ViewVideoComponent implements OnInit {
   }
 
   editVideo(dataId){
-    debugger;
+    this.videoInfoService.sendDataId(dataId);
+    this.toggleAddUpdateTab('update');
   }
 
   deleteVideo(dataId) {
-    debugger;
+    this.videoInfoService.deleteVideo(dataId).subscribe( res =>{
+      this.showSuccessMessage('Deleted');
+      this.bindVideos();
+    })
+  }
+
+  toggleAddUpdateTab(tabType) {
+    if (tabType == 'update') {
+      let tab = document.getElementsByClassName('mat-tab-label')[1];
+      tab.click();
+      var tabText = tab.getElementsByClassName('mat-tab-label-content')[0];
+      tabText.innerText = 'Update Videos';
+    }
+    else {
+      let tab = document.getElementsByClassName('mat-tab-label')[1]
+      tab.click();
+      var tabText = tab.getElementsByClassName('mat-tab-label-content')[0];
+      tabText.innerText = 'Add Videos';
+    }
+  }
+
+  showSuccessMessage(value) {
+    window.scrollTo(500, 0);
+    this.isShowSuccess = false;
+    this.isMsgText = value;
+    setTimeout(() => {
+      this.isShowSuccess = true;
+    }, 5000);
+  }
+
+  showErrorMessage() {
+    window.scrollTo(500, 0);
+    this.isShowError = false;
+    setTimeout(() => {
+      this.isShowError = true;
+    }, 5000);
   }
 }

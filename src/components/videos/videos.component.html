@@ -1,12 +1,12 @@
-<div class="container80">
+<div class="container80">  
   <mat-card>
     <mat-card-content>
-      <mat-tab-group class="demo-tab-group">
-        <mat-tab label="View Videos" class="matTab50">
-          <app-view-video></app-view-video>
+      <mat-tab-group class="demo-tab-group" (selectedTabChange)="showContent($event)">
+        <mat-tab label="View Videos" class="matTab50" >
+          <app-view-video [tabVal]="tabValue"></app-view-video>
         </mat-tab>
         <mat-tab label="Add Videos" class="matTab50">
-          <app-addvideo></app-addvideo>
+          <app-addvideo [tabVal]="tabValue"></app-addvideo>
         </mat-tab>        
       </mat-tab-group>
     </mat-card-content>
