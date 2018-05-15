@@ -58,9 +58,11 @@ export class AddvideoComponent implements OnInit {
     })
     //return false;
     //arr.push(arrVal);
+    let splittedUrl = values.txtUrl.split('watch?v=');
+    let newUrl = splittedUrl.join('embed/');
     values.tags = formattedArr;
     values.time = values.txtTime;
-    values.url = values.txtUrl;
+    values.url = newUrl;
 
     this.videoInfo.saveVideo(values).subscribe( res => {
       console.log(res)
