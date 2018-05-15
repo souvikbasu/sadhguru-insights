@@ -17,7 +17,7 @@ export class ViewVideoComponent implements OnInit {
   }
 
   bindVideos() {
-    this.videoInfoService.getAllVideo().subscribe(res => {
+    this.videoInfoService.getVideo('').subscribe(res => {
       debugger;
       this.dataArr = res;
       console.log(this.dataArr);

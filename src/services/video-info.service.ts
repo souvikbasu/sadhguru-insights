@@ -30,11 +30,4 @@ export class VideoInfoService {
       .map(res => res.json()
       );
   }
-
-  getAllVideo() {
-    this.headers = new Headers({ 'Content-Type': 'application/json' });
-    return this.http.get(this.apiUrl + '/all-videos', { headers: this.headers })
-      .map(res => res.json()
-      );
-  }
 }
