@@ -20,7 +20,7 @@ export class AddvideoComponent implements OnInit, OnChanges {
   isShow = false;
   tabValue : string;
   isMsgText : string;
-  @Input() tabVal = '';
+  @Input() tabVal;
   ngOnInit() {
     this.videoForm = this.fb.group({
       'txtUrl': ['', Validators],
@@ -97,7 +97,7 @@ export class AddvideoComponent implements OnInit, OnChanges {
       if(res['message'] == 'saved'){
         this.showSuccessMessage('Saved');
         this.clearDetails();
-        let tab = document.getElementsByClassName('mat-tab-label')[0];
+        let tab = document.getElementsByClassName('mat-tab-label')[0] as HTMLElement;
         tab.click();
         var tabText = tab.getElementsByClassName('mat-tab-label-content')[0];
       }
@@ -129,7 +129,7 @@ export class AddvideoComponent implements OnInit, OnChanges {
       if (res['message'] == 'updated') {
         this.showSuccessMessage('Update');
         this.clearDetails();
-        let tab = document.getElementsByClassName('mat-tab-label')[0];
+        let tab = document.getElementsByClassName('mat-tab-label')[0] as HTMLElement;
         tab.click();
         var tabText = tab.getElementsByClassName('mat-tab-label-content')[0];
       }
