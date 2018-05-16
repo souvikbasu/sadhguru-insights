@@ -20,6 +20,7 @@ export class AddvideoComponent implements OnInit, OnChanges {
   isShow = false;
   tabValue : string;
   isMsgText : string;
+  buttonArr : any;
   @Input() tabVal;
   ngOnInit() {
     this.videoForm = this.fb.group({
@@ -27,6 +28,7 @@ export class AddvideoComponent implements OnInit, OnChanges {
       'txtKeyWords': ['', Validators],
       'txtTime' : ['',Validators]
     })
+    this.getTags();
     this.bindUpdateData();
   }
 
@@ -82,7 +84,7 @@ export class AddvideoComponent implements OnInit, OnChanges {
 
     let formattedArr = arr.map(function(data){
       let value = data.trim();
-      value = value.toLocaleLowerCase();
+      //value = value.toLocaleLowerCase();
       return value;
     })
 
@@ -133,6 +135,12 @@ export class AddvideoComponent implements OnInit, OnChanges {
         tab.click();
         var tabText = tab.getElementsByClassName('mat-tab-label-content')[0];
       }
+    })
+  }
+
+  getTags(){
+    this.videoInfo.getTags().subscribe( res =>{
+      this.buttonArr = res;
     })
   }
 
