@@ -16,14 +16,13 @@ export class ViewVideoComponent implements OnInit, OnChanges {
   isShowSuccess: boolean = true;
   isShowError: boolean = true;
   isMsgText: string;
-  @Input() tabVal = '';
+  @Input() tabVal;
   ngOnInit() {
     debugger;
     this.bindVideos();
   }
 
   ngOnChanges() {
-    debugger;
     if (this.tabVal == 0) {
       this.bindVideos();
     }
@@ -62,15 +61,15 @@ export class ViewVideoComponent implements OnInit, OnChanges {
 
   toggleAddUpdateTab(tabType) {
     if (tabType == 'update') {
-      let tab = document.getElementsByClassName('mat-tab-label')[1];
+      let tab = document.getElementsByClassName('mat-tab-label')[1] as HTMLElement;
       tab.click();
-      var tabText = tab.getElementsByClassName('mat-tab-label-content')[0];
+      var tabText = tab.getElementsByClassName('mat-tab-label-content')[0] as HTMLElement;
       tabText.innerText = 'Update Videos';
     }
     else {
-      let tab = document.getElementsByClassName('mat-tab-label')[1]
+      let tab = document.getElementsByClassName('mat-tab-label')[1] as HTMLElement;
       tab.click();
-      var tabText = tab.getElementsByClassName('mat-tab-label-content')[0];
+      var tabText = tab.getElementsByClassName('mat-tab-label-content')[0] as HTMLElement;
       tabText.innerText = 'Add Videos';
     }
   }
