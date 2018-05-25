@@ -8,7 +8,7 @@
   <table class="table">
     <thead>
       <tr>
-        <th style="width: 10%">Sr. No.</th>
+        <!-- <th style="width: 10%">Sr. No.</th> -->
         <th style="width: 25%">Video</th>
         <th style="width: 25%">Tags</th>
         <th style="width: 15%">Time</th>
@@ -16,8 +16,8 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let data of dataArr;let i = index;">
-        <td>{{i+1}}</td>
+      <tr *ngFor="let data of dataArr | paginate: { itemsPerPage: 5, currentPage: p };let i = index;">
+        <!-- <td>{{i+1}}</td> -->
         <td>
           <iframe [attr.src]="showPreview(data.url)" width="100" height="70" frameborder="0" allowfullscreen>            
           </iframe>
@@ -31,4 +31,7 @@
       </tr>
     </tbody>
   </table>
+  <div class="col-md-12 text-center my-pagination">
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  </div>
 </div>

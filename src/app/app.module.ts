@@ -12,6 +12,7 @@ import { VideoInfoService } from '../services/video-info.service';
 import { HttpModule } from '@angular/http';
 import { ViewVideoComponent } from '../components/view-video/view-video.component';
 import { VideosComponent } from '../components/videos/videos.component';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,7 @@ import { VideosComponent } from '../components/videos/videos.component';
     BrowserModule, BrowserAnimationsModule, HttpModule,
     AppRoutingModule, ReactiveFormsModule, FormsModule,
     MatButtonModule, MatSelectModule, MatInputModule, MatToolbarModule, MatCardModule, MatTabsModule,
-    MatTableModule
+    MatTableModule, NgxPaginationModule
   ],
   providers: [VideoInfoService],
   bootstrap: [AppComponent]

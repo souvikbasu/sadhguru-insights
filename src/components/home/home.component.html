@@ -1,17 +1,20 @@
 <div class="container">
   <div class="col-12 col-sm-12 col-xl-12 form-control">
-    <button mat-raised-button class="myHomeBtn" color="primary" *ngFor="let data of buttonArr;let i = index;" (click)="getVideo(data,i)">
+    <button mat-raised-button class="myHomeBtn mt-1" color="primary" *ngFor="let data of buttonArr;let i = index;" (click)="getVideo(data,i)">
       <span>{{data | uppercase}}</span>
     </button>
   </div>
   <div class="row">
-    <div class="col-12 col-sm-12 col-xl-6" *ngFor="let data of dataArr;">
+    <div class="col-12 col-sm-12 col-xl-6" *ngFor="let data of dataArr| paginate: { itemsPerPage: 6, currentPage: p };">
       <mat-card class="video-card">
         <iframe [attr.src]="showPreview(data.url)" width="560" height="315" frameborder="0" allowfullscreen></iframe>
         <mat-card-header>
           <div class="titleHeader">{{data.time}}</div>
         </mat-card-header>
       </mat-card>
+    </div>
+    <div class="col-md-12 text-center my-pagination">
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
     </div>
   </div>
   

@@ -17,6 +17,7 @@ export class ViewVideoComponent implements OnInit, OnChanges {
   isShowError: boolean = true;
   isMsgText: string;
   @Input() tabVal;
+  p: number = 1;
   ngOnInit() {
     debugger;
     this.bindVideos();
