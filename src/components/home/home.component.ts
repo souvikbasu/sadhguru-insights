@@ -12,7 +12,7 @@ export class HomeComponent implements OnInit {
   constructor(private videoInfoService: VideoInfoService, public sanitizer: DomSanitizer) { }
   dataArr = [];
   buttonArr = [];
-
+  p: number = 1;
   ngOnInit() {
     this.bindVideos();
   }

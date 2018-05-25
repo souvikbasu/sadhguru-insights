@@ -40,3 +40,6 @@ button.mat-raised-button.mat-primary{
 .myHomeBtn.active{
   background: #af87f7 !important;
 }
+.my-pagination /deep/ .ngx-pagination .current {
+    background: #3f51b5;
+}
