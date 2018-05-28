@@ -90,10 +90,25 @@ export class AddvideoComponent implements OnInit, OnChanges {
 
     let splittedUrl = values.txtUrl.split('watch?v=');
     let newUrl = splittedUrl.join('embed/');
+    
+
+    let startTime = values.txtTime;
+
+    if (values.txtTime != ""){
+      let time = values.txtTime;
+      time = time.split(':');
+      let hh = time[0];
+      let mm = time[1];
+      let ss = time[2];
+      startTime = (parseInt(hh) * 60 * 60) + (parseInt(mm) * 60) + parseInt(ss);
+      newUrl = newUrl + '?start=' + startTime;
+    }
+
     values.tags = formattedArr;
-    values.time = values.txtTime;
+    values.time = startTime;
     values.url = newUrl;
 
+    //return false;
     this.videoInfo.saveVideo(values).subscribe( res => {
       console.log(res)
       if(res['message'] == 'saved'){
