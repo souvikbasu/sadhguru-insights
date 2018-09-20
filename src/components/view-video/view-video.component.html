@@ -16,10 +16,10 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let data of dataArr | paginate: { itemsPerPage: 5, currentPage: p };let i = index;">
+      <tr *ngFor="let data of dataArr | paginate: { itemsPerPage: 40, currentPage: p };let i = index;">
         <!-- <td>{{i+1}}</td> -->
         <td>
-          <iframe [attr.src]="showPreview(data.url)" width="100" height="70" frameborder="0" allowfullscreen>            
+          <iframe [attr.src]="showPreview(data.url)" width="100" height="70" frameborder="0" allowfullscreen>
           </iframe>
         </td>
         <td>{{data.tags}}</td>
